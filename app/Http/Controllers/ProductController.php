@@ -41,12 +41,19 @@ class ProductController extends Controller
      */
     public function store(StoreProductRequest $request)
     {
+
+        $path = '';
+
+        if ($request->file('photo')) {
+            $path = $request->file('photo')->store('photos', 'public');
+        }
+
         Product::create([
             'name' => $request->name,
             'description' => $request->description,
             'price' => $request->price,
             'category_id' => $request->category_id,
-            'photo' => ''
+            'photo' => $path
         ]);
 
         return redirect()->route('products.index');
