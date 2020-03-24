@@ -28,3 +28,5 @@ Route::get('/contact', function () {
 })->name('contact');
 
 Auth::routes();
+
+Route::resource('categories', 'CategoryController')->middleware('auth');
