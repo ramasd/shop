@@ -3,24 +3,26 @@
 @section('content')
     <div class="col-lg-12">
 
-        <h1 class="my-4">Categories</h1>
+        <h1 class="my-4">Products</h1>
 
-        <a href="{{ route('categories.create') }}" class="btn btn-primary">New Category</a>
+        <a href="{{ route('products.create') }}" class="btn btn-primary">New Product</a>
         <br /><br />
 
         <table class="table">
             <thead>
                 <tr>
                     <th>Name</th>
+                    <th>Price</th>
                     <th></th>
                 </tr>
-                @foreach($categories as $category)
+                @foreach($products as $product)
                     <tr>
-                        <td>{{ $category->name }}</td>
+                        <td>{{ $product->name }}</td>
+                        <td>${{ $product->price }}</td>
                         <td>
-                            <a class="btn btn-primary" href="{{ route('categories.edit', $category->id) }}">Edit</a>
+                            <a class="btn btn-primary" href="{{ route('products.edit', $product->id) }}">Edit</a>
 
-                            <form action="{{ route('categories.destroy', $category->id) }}" method="POST" style="display: inline">
+                            <form action="{{ route('products.destroy', $product->id) }}" method="POST" style="display: inline">
                                 @method('DELETE')
                                 @csrf
                                 <input type="submit" value="Delete" class="btn btn-danger" onclick="return confirm('Are you sure?')" />
