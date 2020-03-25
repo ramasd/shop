@@ -13,12 +13,16 @@
                 <tr>
                     <th>Name</th>
                     <th>Price</th>
-                    <th></th>
+                    <th>Photo</th>
+                    <th>Actions</th>
                 </tr>
                 @foreach($products as $product)
                     <tr>
-                        <td>{{ $product->name }}</td>
+                        <td><a href="{{ route('products.show', $product->id) }}">{{ $product->name }}</a></td>
                         <td>${{ $product->price }}</td>
+                        <td>
+                            <img src="{{ $product->photo ? Storage::url($product->photo) : 'http://placehold.it/700x400' }}" alt="img-{{ $product->id }}" height="50">
+                        </td>
                         <td>
                             <a class="btn btn-primary" href="{{ route('products.edit', $product->id) }}">Edit</a>
 

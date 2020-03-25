@@ -47,10 +47,12 @@
             @foreach($products as $product)
                 <div class="col-lg-4 col-md-6 mb-4">
                     <div class="card h-100">
-                        <a href="#"><img class="card-img-top" src="{{ $product->photo ? Storage::url($product->photo) : 'http://placehold.it/700x400' }}" alt="img-{{ $product->id }}"></a>
+                        <a href="{{ route('products.show', $product->id) }}">
+                            <img class="card-img-top" src="{{ $product->photo ? Storage::url($product->photo) : 'http://placehold.it/700x400' }}" alt="img-{{ $product->id }}">
+                        </a>
                         <div class="card-body">
                             <h4 class="card-title">
-                                <a href="#">{{ $product->name }}</a>
+                                <a href="{{ route('products.show', $product->id) }}">{{ $product->name }}</a>
                             </h4>
                             <h5>${{ $product->price }}</h5>
                             <p class="card-text">{{ $product->description }}</p>

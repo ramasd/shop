@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Category;
 use App\Http\Requests\StoreProductRequest;
 use App\Product;
-use Illuminate\Http\Request;
 
 class ProductController extends Controller
 {
@@ -67,7 +66,9 @@ class ProductController extends Controller
      */
     public function show($id)
     {
-        //
+        $product = Product::findOrFail($id);
+
+        return view('products.show', compact('product'));
     }
 
     /**
@@ -95,12 +96,18 @@ class ProductController extends Controller
     {
         $product = Product::findOrFail($id);
 
+        $path = $product->photo;;
+
+        if ($request->file('photo')) {
+            $path = $request->file('photo')->store('photos', 'public');
+        }
+
         $product->update([
             'name' => $request->name,
             'description' => $request->description,
             'price' => $request->price,
             'category_id' => $request->category_id,
-            'photo' => ''
+            'photo' => $path
         ]);
 
         return redirect()->route('products.index');

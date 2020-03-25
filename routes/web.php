@@ -31,5 +31,7 @@ Auth::routes();
 
 Route::group(['middleware' => 'auth'], function() {
     Route::resource('categories', 'CategoryController');
-    Route::resource('products', 'ProductController');
+    Route::resource('products', 'ProductController')->except('show');
 });
+
+Route::get('products/{product}', 'productController@show')->name('products.show');
