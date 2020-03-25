@@ -15,14 +15,23 @@
             </div>
         @endif
 
-        <form action="{{ route('categories.store') }}" method="POST">
+        <form action="{{ route('banners.store') }}" method="POST" enctype="multipart/form-data">
             @csrf
 
             Name:
             <br />
-
             <input type="text" name="name" value="{{ @old('name') }}" class="form-control" />
             <br />
+
+            Description:
+            <br />
+            <textarea name="description" class="form-control">{{ @old('description') }}</textarea>
+            <br />
+
+            Photo:
+            <br />
+            <input type="file" name="photo" />
+            <br /><br />
 
             <input type="submit" class="btn btn-primary" value="Save" />
             <br /><br />

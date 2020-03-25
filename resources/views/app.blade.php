@@ -53,6 +53,9 @@
                         <a class="nav-link" href="{{ route('categories.index') }}">Categories</a>
                     </li>
                     <li class="nav-item">
+                        <a class="nav-link" href="{{ route('banners.index') }}">Banners</a>
+                    </li>
+                    <li class="nav-item">
                         <a class="nav-link" href="#" onclick="document.getElementById('logout-form').submit()">Log out</a>
                     </li>
                     <form action="{{ route('logout') }}" method="POST" id="logout-form">

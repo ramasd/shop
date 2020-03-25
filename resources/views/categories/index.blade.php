@@ -10,11 +10,13 @@
 
         <table class="table">
             <thead>
-                <tr>
-                    <th>Name</th>
-                    <th></th>
-                </tr>
-                @foreach($categories as $category)
+                @if(count($categories))
+                    <tr>
+                        <th>Name</th>
+                        <th>Actions</th>
+                    </tr>
+                @endif
+                @forelse($categories as $category)
                     <tr>
                         <td>{{ $category->name }}</td>
                         <td>
@@ -27,7 +29,7 @@
                             </form>
                         </td>
                     </tr>
-                @endforeach
+                @endforelse
             </thead>
         </table>
 

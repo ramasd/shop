@@ -11,7 +11,7 @@
         <div><strong>Category</strong>: {{ $product->category->name }}</div>
         <br />
         <div>
-            <img class="card-img" src="{{ $product->photo ? Storage::url($product->photo) : 'http://placehold.it/700x400' }}"
+            <img class="card-img" src="{{ $product->photo ? Storage::url($product->photo) : Storage::url('photos/default.png') }}"
                  alt="img-{{ $product->id }}">
         </div>
         <br />

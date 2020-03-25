@@ -8,6 +8,8 @@ use App\Product;
 
 class ProductController extends Controller
 {
+    const DEFAULT_IMAGE_STORAGE_URL = 'photos/default.png';
+
     /**
      * Display a listing of the resource.
      *
@@ -40,8 +42,7 @@ class ProductController extends Controller
      */
     public function store(StoreProductRequest $request)
     {
-
-        $path = '';
+        $path = self::DEFAULT_IMAGE_STORAGE_URL;
 
         if ($request->file('photo')) {
             $path = $request->file('photo')->store('photos', 'public');
