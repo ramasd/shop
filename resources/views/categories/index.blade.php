@@ -29,6 +29,8 @@
                             </form>
                         </td>
                     </tr>
+                @empty
+                    <tr><td>No categories found.</td></tr>
                 @endforelse
             </thead>
         </table>
