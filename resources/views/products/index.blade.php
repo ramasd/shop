@@ -14,6 +14,7 @@
                     <tr>
                         <th>Name</th>
                         <th>Price</th>
+                        <th>Category</th>
                         <th>Photo</th>
                         <th>Actions</th>
                     </tr>
@@ -22,6 +23,11 @@
                     <tr>
                         <td><a href="{{ route('products.show', $product->id) }}">{{ $product->name }}</a></td>
                         <td>${{ $product->price }}</td>
+                        <td>
+                            @if($product->category)
+                                {{ $product->category->name }}
+                            @endif
+                        </td>
                         <td>
                             <img src="{{ $product->photo ? Storage::url($product->photo) : Storage::url('photos/default.png') }}" alt="img-{{ $product->id }}" height="50">
                         </td>
@@ -36,7 +42,7 @@
                         </td>
                     </tr>
                 @empty
-                    <span>No products found.</span>
+                    <tr><td>No categories found.</td></tr>
                 @endforelse
             </thead>
         </table>

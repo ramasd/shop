@@ -3,7 +3,7 @@
 @section('content')
     <div class="col-lg-3">
 
-        <h1 class="my-4">Shop Name</h1>
+        <h1 class="my-4">Shop</h1>
         <div class="list-group">
             @foreach($categories as $category)
                 <a href="/?category_id={{ $category->id }}" class="list-group-item">{{ $category->name }}</a>
@@ -57,7 +57,10 @@
                             <h5>${{ $product->price }}</h5>
                             <p class="card-text">{{ $product->description }}</p>
                             <hr />
-                            Category: {{ $product->category->name }}
+                            Category:
+                            @if($product->category)
+                                {{ $product->category->name }}
+                            @endif
                         </div>
                         <div class="card-footer">
                             <small class="text-muted">

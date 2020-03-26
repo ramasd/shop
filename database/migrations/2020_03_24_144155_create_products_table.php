@@ -18,8 +18,8 @@ class CreateProductsTable extends Migration
             $table->string('name');
             $table->decimal('price');
             $table->string('photo');
-            $table->unsignedBigInteger('category_id');
-            $table->foreign('category_id')->references('id')->on('categories');
+            $table->unsignedBigInteger('category_id')->nullable();
+            $table->foreign('category_id')->references('id')->on('categories')->onDelete('set null');;
             $table->timestamps();
         });
     }
@@ -31,6 +31,8 @@ class CreateProductsTable extends Migration
      */
     public function down()
     {
+        DB::statement('SET FOREIGN_KEY_CHECKS = 0');
         Schema::dropIfExists('products');
+        DB::statement('SET FOREIGN_KEY_CHECKS = 1');
     }
 }

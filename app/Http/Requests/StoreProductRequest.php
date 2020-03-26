@@ -27,7 +27,6 @@ class StoreProductRequest extends FormRequest
             'name' => 'required|min:6',
             'description' => 'required',
             'price' => 'required|regex:/^\d+(\.\d{1,2})?$/',
-            'category_id' => 'required',
         ];
     }
 }
