@@ -44,7 +44,6 @@
         </div>
 
         <div class="row">
-
             @foreach($products as $product)
                 <div class="col-lg-4 col-md-6 mb-4">
                     <div class="card h-100">
@@ -61,7 +60,16 @@
                             Category: {{ $product->category->name }}
                         </div>
                         <div class="card-footer">
-                            <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
+                            <small class="text-muted">
+                                {{ $product->reviews->avg('rating') }}
+                                @for($i=1; $i<=5; $i++)
+                                    @if(round($product->reviews->avg('rating')) >= $i)
+                                        &#9733;
+                                    @else
+                                        &#9734;
+                                    @endif
+                                @endfor
+                            </small>
                         </div>
                     </div>
                 </div>

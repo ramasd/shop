@@ -36,3 +36,5 @@ Route::group(['middleware' => 'auth'], function() {
 });
 
 Route::get('products/{product}', 'productController@show')->name('products.show');
+
+Route::post('reviews', 'ReviewController@store')->name('reviews.store')->middleware('auth');
