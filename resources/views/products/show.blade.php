@@ -13,8 +13,8 @@
                 <input type="hidden" name="product_id" value="{{ $product->id }}"/>
                 <select name="rating">
                     @for ($i = 1; $i <= 5; $i++)
-                        @if($product->reviews->where('user_id', Auth::id())->first())
-                            <option value="{{ $i }}" {{ $i == $product->reviews->where('user_id', Auth::id())->first()->rating ? 'selected' : '' }}>{{ $i }}</option>
+                        @if($product->reviews->where('user_id', auth()->id())->first())
+                            <option value="{{ $i }}" {{ $i == $product->reviews->where('user_id', auth()->id())->first()->rating ? 'selected' : '' }}>{{ $i }}</option>
                         @else
                             <option value="{{ $i }}" {{ $i == 4 ? 'selected' : '' }}>{{ $i }}</option>
                         @endif
@@ -22,8 +22,8 @@
                 </select>
                 <input type="submit" value="Rate" />
             </form>
-            @if($product->reviews->where('user_id', Auth::id())->isNotEmpty())
-                Your rating for this product: <b>{{ $product->reviews->where('user_id', Auth::id())->first()->rating }}</b>
+            @if($product->reviews->where('user_id', auth()->id())->isNotEmpty())
+                Your rating for this product: <b>{{ $product->reviews->where('user_id', auth()->id())->first()->rating }}</b>
             @endif
         @endif
         <hr />

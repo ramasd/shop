@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Review;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 
 class ReviewController extends Controller
 {
@@ -14,11 +13,11 @@ class ReviewController extends Controller
      */
     public function store(Request $request)
     {
-        $data = ['product_id' => $request->product_id, 'user_id' => Auth::id()];
+        $data = ['product_id' => $request->product_id, 'user_id' => auth()->id()];
 
         Review::updateOrCreate($data, [
             'product_id' => $request->product_id,
-            'user_id' => Auth::id(),
+            'user_id' => auth()->id(),
             'rating' => $request->rating
         ]);
 

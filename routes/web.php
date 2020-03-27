@@ -33,8 +33,8 @@ Route::group(['middleware' => 'auth'], function() {
     Route::resource('categories', 'CategoryController');
     Route::resource('products', 'ProductController')->except('show');
     Route::resource('banners', 'BannerController');
+    Route::post('reviews', 'ReviewController@store')->name('reviews.store');
 });
 
-Route::get('products/{product}', 'productController@show')->name('products.show');
+Route::get('products/{product}', 'HomeController@showProduct')->name('products.show');
 
-Route::post('reviews', 'ReviewController@store')->name('reviews.store')->middleware('auth');
