@@ -1,8 +1,9 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
 use App\Banner;
+use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreBannerRequest;
 use Illuminate\Http\Request;
 
@@ -50,7 +51,7 @@ class BannerController extends Controller
             'path' => $path
         ]);
 
-        return redirect()->route('banners.index');
+        return redirect()->route('admin.banners.index');
     }
 
     /**
@@ -106,7 +107,7 @@ class BannerController extends Controller
             'path' => $path
         ]);
 
-        return redirect()->route('banners.index');
+        return redirect()->route('admin.banners.index');
     }
 
     /**
@@ -120,6 +121,6 @@ class BannerController extends Controller
         $banner = Banner::findOrFail($id);
         $banner->delete();
 
-        return redirect()->route('banners.index');
+        return redirect()->route('admin.banners.index');
     }
 }

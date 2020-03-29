@@ -30,7 +30,7 @@
         <div><strong>Name</strong>: {{ $product->name }}</div>
         <div><strong>Description</strong>: {{ $product->description }}</div>
         <div><strong>Price</strong>: ${{ $product->price }}</div>
-        <div><strong>Category</strong>: {{ $product->category->name }}</div>
+        <div><strong>Category</strong>: @if(isset($product->category)) {{ $product->category->name }} @endif</div>
         <div>
             <div class="card-footer">
                 <small class="text-muted">

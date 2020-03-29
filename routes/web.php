@@ -13,28 +13,23 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', 'HomeController@index')->name('home');
+Route::get('/', 'Front\HomeController@index')->name('home');
+Route::get('/about', 'Front\HomeController@getAbout')->name('about');
+Route::get('/services', 'Front\HomeController@getServices')->name('services');
+Route::get('/contact', 'Front\HomeController@getContact')->name('contact');
 
-Route::get('/about', function () {
-    return view('about');
-})->name('about');
-
-Route::get('/services', function () {
-    return view('services');
-})->name('services');
-
-Route::get('/contact', function () {
-    return view('contact');
-})->name('contact');
+Route::get('products/{product}', 'Front\ProductController@show')->name('products.show');
 
 Auth::routes();
 
 Route::group(['middleware' => 'auth'], function() {
-    Route::resource('categories', 'CategoryController');
-    Route::resource('products', 'ProductController')->except('show');
-    Route::resource('banners', 'BannerController');
-    Route::post('reviews', 'ReviewController@store')->name('reviews.store');
+    Route::post('reviews', 'Front\ReviewController@store')->name('reviews.store');
+
+    Route::prefix('admin')->group(function () {
+        Route::name('admin.')->group(function () {
+            Route::resource('categories', 'Admin\CategoryController');
+            Route::resource('products', 'Admin\ProductController')->except('show');
+            Route::resource('banners', 'Admin\BannerController');
+        });
+    });
 });
-
-Route::get('products/{product}', 'HomeController@showProduct')->name('products.show');
-

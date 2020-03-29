@@ -5,7 +5,7 @@
 
         <h1 class="my-4">Products</h1>
 
-        <a href="{{ route('products.create') }}" class="btn btn-primary">New Product</a>
+        <a href="{{ route('admin.products.create') }}" class="btn btn-primary">New Product</a>
         <br /><br />
 
         <table class="table">
@@ -32,9 +32,9 @@
                             <img src="{{ $product->photo ? Storage::url($product->photo) : Storage::url('photos/default.png') }}" alt="img-{{ $product->id }}" height="50">
                         </td>
                         <td>
-                            <a class="btn btn-primary" href="{{ route('products.edit', $product->id) }}">Edit</a>
+                            <a class="btn btn-primary" href="{{ route('admin.products.edit', $product->id) }}">Edit</a>
 
-                            <form action="{{ route('products.destroy', $product->id) }}" method="POST" style="display: inline">
+                            <form action="{{ route('admin.products.destroy', $product->id) }}" method="POST" style="display: inline">
                                 @method('DELETE')
                                 @csrf
                                 <input type="submit" value="Delete" class="btn btn-danger" onclick="return confirm('Are you sure?')" />

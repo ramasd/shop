@@ -1,9 +1,10 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Front;
 
 use App\Banner;
 use App\Category;
+use App\Http\Controllers\Controller;
 use App\Product;
 
 class HomeController extends Controller
@@ -21,13 +22,26 @@ class HomeController extends Controller
     }
 
     /**
-     * @param $id
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function showProduct($id)
+    public function getAbout()
     {
-        $product = Product::findOrFail($id);
+        return view('about');
+    }
 
-        return view('products.show', compact('product'));
+    /**
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function getServices()
+    {
+        return view('services');
+    }
+
+    /**
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function getContact()
+    {
+        return view('contact');
     }
 }

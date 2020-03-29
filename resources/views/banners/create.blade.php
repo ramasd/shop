@@ -15,7 +15,7 @@
             </div>
         @endif
 
-        <form action="{{ route('banners.store') }}" method="POST" enctype="multipart/form-data">
+        <form action="{{ route('admin.banners.store') }}" method="POST" enctype="multipart/form-data">
             @csrf
 
             Name:

@@ -47,13 +47,13 @@
 
                 @auth
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('products.index') }}">Products</a>
+                        <a class="nav-link" href="{{ route('admin.products.index') }}">Products</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('categories.index') }}">Categories</a>
+                        <a class="nav-link" href="{{ route('admin.categories.index') }}">Categories</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('banners.index') }}">Banners</a>
+                        <a class="nav-link" href="{{ route('admin.banners.index') }}">Banners</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#" onclick="document.getElementById('logout-form').submit()">Log out</a>

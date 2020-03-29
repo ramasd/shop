@@ -5,7 +5,7 @@
 
         <h1 class="my-4">Banners</h1>
 
-        <a href="{{ route('banners.create') }}" class="btn btn-primary">New Banner</a>
+        <a href="{{ route('admin.banners.create') }}" class="btn btn-primary">New Banner</a>
         <br /><br />
 
         <table class="table">
@@ -21,13 +21,13 @@
                 @endif
                 @forelse($banners as $banner)
                     <tr>
-                        <td><a href="{{ route('banners.show', $banner->id) }}"><img src="{{ Storage::url($banner->path) }}" height="50"/></a></td>
+                        <td><a href="{{ route('admin.banners.show', $banner->id) }}"><img src="{{ Storage::url($banner->path) }}" height="50"/></a></td>
                         <td>{{$banner->name}}</td>
                         <td>{{$banner->description}}</td>
                         <td>
-                            <a class="btn btn-primary" href="{{ route('banners.edit', $banner->id) }}">Edit</a>
+                            <a class="btn btn-primary" href="{{ route('admin.banners.edit', $banner->id) }}">Edit</a>
 
-                            <form action="{{ route('banners.destroy', $banner->id) }}" method="POST" style="display: inline">
+                            <form action="{{ route('admin.banners.destroy', $banner->id) }}" method="POST" style="display: inline">
                                 @method('DELETE')
                                 @csrf
                                 <input type="submit" value="Delete" class="btn btn-danger" onclick="return confirm('Are you sure?')" />
