@@ -6,10 +6,16 @@ use App\Category;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreProductRequest;
 use App\Product;
+use Illuminate\Support\Facades\Storage;
 
 class ProductController extends Controller
 {
     const DEFAULT_IMAGE_STORAGE_URL = 'photos/default.png';
+
+    public function __construct()
+    {
+        //
+    }
 
     /**
      * Display a listing of the resource.
@@ -24,8 +30,6 @@ class ProductController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function create()
@@ -61,16 +65,6 @@ class ProductController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     *
-     * @param $id
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
      * Show the form for editing the specified resource.
      *
      * @param $id
@@ -95,7 +89,8 @@ class ProductController extends Controller
     {
         $product = Product::findOrFail($id);
 
-        $path = $product->photo;;
+        $path = $product->photo;
+        $file = '/public/'.$path;
 
         if ($request->file('photo')) {
             $path = $request->file('photo')->store('photos', 'public');
@@ -109,6 +104,10 @@ class ProductController extends Controller
             'photo' => $path
         ]);
 
+        if (Storage::exists($file) AND $path != self::DEFAULT_IMAGE_STORAGE_URL) {
+            Storage::delete($file);
+        }
+
         return redirect()->route('admin.products.index')->with('success', 'Product has been updated successfully!');
     }
 
@@ -121,6 +120,18 @@ class ProductController extends Controller
     public function destroy($id)
     {
         $product = Product::findOrFail($id);
+
+        $path = "";
+        if($product->photo) {
+            $path = $product->photo;
+        }
+
+        $file = '/public/'.$path;
+
+        if (Storage::exists($file) AND $path != self::DEFAULT_IMAGE_STORAGE_URL) {
+            Storage::delete($file);
+        }
+
         $product->delete();
 
         return redirect()->route('admin.products.index')->with('success', 'Product has been deleted successfully!');
