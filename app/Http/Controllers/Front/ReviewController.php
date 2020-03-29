@@ -22,6 +22,6 @@ class ReviewController extends Controller
             'rating' => $request->rating
         ]);
 
-        return redirect()->back();
+        return redirect()->back()->with('success', 'Your rating has been saved!');
     }
 }

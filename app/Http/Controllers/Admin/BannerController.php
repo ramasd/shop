@@ -51,7 +51,7 @@ class BannerController extends Controller
             'path' => $path
         ]);
 
-        return redirect()->route('admin.banners.index');
+        return redirect()->route('admin.banners.index')->with('success', 'Banner has been created successfully!');
     }
 
     /**
@@ -107,7 +107,7 @@ class BannerController extends Controller
             'path' => $path
         ]);
 
-        return redirect()->route('admin.banners.index');
+        return redirect()->route('admin.banners.index')->with('success', 'Banner has been updated successfully!');
     }
 
     /**
@@ -121,6 +121,6 @@ class BannerController extends Controller
         $banner = Banner::findOrFail($id);
         $banner->delete();
 
-        return redirect()->route('admin.banners.index');
+        return redirect()->route('admin.banners.index')->with('success', 'Banner has been deleted successfully!');
     }
 }

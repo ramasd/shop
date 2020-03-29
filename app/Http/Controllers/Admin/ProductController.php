@@ -57,7 +57,7 @@ class ProductController extends Controller
             'photo' => $path
         ]);
 
-        return redirect()->route('admin.products.index');
+        return redirect()->route('admin.products.index')->with('success', 'Product has been created successfully!');
     }
 
     /**
@@ -109,7 +109,7 @@ class ProductController extends Controller
             'photo' => $path
         ]);
 
-        return redirect()->route('admin.products.index');
+        return redirect()->route('admin.products.index')->with('success', 'Product has been updated successfully!');
     }
 
     /**
@@ -123,6 +123,6 @@ class ProductController extends Controller
         $product = Product::findOrFail($id);
         $product->delete();
 
-        return redirect()->route('admin.products.index');
+        return redirect()->route('admin.products.index')->with('success', 'Product has been deleted successfully!');
     }
 }

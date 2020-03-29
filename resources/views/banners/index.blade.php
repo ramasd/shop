@@ -3,6 +3,15 @@
 @section('content')
     <div class="col-lg-12">
 
+        @if (session('success'))
+            <div class="alert  alert-success alert-dismissible fade show" style="margin-top: 10px;" role="alert">
+                {{ session('success') }}
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+        @endif
+
         <h1 class="my-4">Banners</h1>
 
         <a href="{{ route('admin.banners.create') }}" class="btn btn-primary">New Banner</a>

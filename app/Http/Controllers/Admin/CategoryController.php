@@ -42,7 +42,7 @@ class CategoryController extends Controller
             'name' => $request->name
         ]);
 
-        return redirect()->route('admin.categories.index');
+        return redirect()->route('admin.categories.index')->with('success', 'Category has been created successfully!');
     }
 
     /**
@@ -84,7 +84,7 @@ class CategoryController extends Controller
             'name' => $request->name
         ]);
 
-        return redirect()->route('admin.categories.index');
+        return redirect()->route('admin.categories.index')->with('success', 'Category has been updated successfully!');
     }
 
     /**
@@ -98,6 +98,6 @@ class CategoryController extends Controller
         $category = Category::findOrFail($id);
         $category->delete();
 
-        return redirect()->route('admin.categories.index');
+        return redirect()->route('admin.categories.index')->with('success', 'Category has been deleted successfully!');
     }
 }
